@@ -1,24 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { ToastContainer } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
+import DragDropImgFileReader from './components/DragDropImgFileReader';
+
 function App() {
+
+  const handleValueCallBack = (response) => {
+    //tratar dados aqui
+    console.log("Values Callback:");
+    console.log(response);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <ToastContainer autoClose={5000} />
+     <div className="container">
+       <DragDropImgFileReader 
+        maxWidth={800} 
+        maxHeight={600} 
+        typeUpload={false} 
+        callBackFunction={handleValueCallBack}
+        containerWidthUpload={500} 
+        containerHeightUpload={200}
+       />
+     </div>
+     <div className="container">
+       <DragDropImgFileReader 
+        maxWidth={800} 
+        maxHeight={600} 
+        typeUpload={true} 
+        callBackFunction={handleValueCallBack}
+        containerWidthUpload={500} 
+        containerHeightUpload={200}
+       />
+     </div>
+    </>
   );
 }
 
